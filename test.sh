@@ -1,10 +1,6 @@
 #!/bin/bash
 
-echo "Simulating deployment..."
-echo "Pulling latest code..."
-sleep 2
-echo "Restarting application..."
-sleep 2
-echo "Deployment complete ✅"
-date
-``
+apt update && apt install -y awscli
+
+echo "Checking AWS identity..."
+aws sts get-caller-identity
