@@ -1,14 +1,14 @@
 #!/bin/bash
 
-echo "Checking environment variables..."
+echo "Loading AWS credentials from mounted file..."
 
-env | grep AWS
+export $(cat /aws.env | xargs)
 
-echo "Exporting AWS variables..."
+echo "DEBUG:"
+echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
+echo "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION"
 
-export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-export AWS_DEFAULT_REGION=us-east-1
+pip install awscli >/dev/null 2>&1 || true
 
 echo "Checking AWS identity..."
 aws sts get-caller-identity
