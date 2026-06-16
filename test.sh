@@ -1,6 +1,10 @@
 #!/bin/bash
 
-apt update && apt install -y awscli
+echo "Installing AWS CLI..."
+
+pip install awscli
 
 echo "Checking AWS identity..."
+
 aws sts get-caller-identity
+``
